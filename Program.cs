@@ -54,10 +54,7 @@ namespace LinqAndJavascript.CSharpDemo
         private static void SelectDemo(List<Order> orders)
         {
             var quantities = orders.Select(order => order.Quantity);
-            foreach (var quantity in quantities)
-            {
-                System.Console.WriteLine($"Quantity: {quantity}");
-            }
+            quantities.ToList().ForEach(quantity => System.Console.WriteLine($"Quantity: {quantity}")));
         }
 
         private static void PrintHeaderFooter(string title, Action action)
@@ -69,7 +66,7 @@ namespace LinqAndJavascript.CSharpDemo
 
         private static void PrintOrders(IEnumerable<Order> orders) {
             foreach (var order in orders){
-                System.Console.WriteLine(order);;
+                System.Console.WriteLine(order);
             }
         }
     }

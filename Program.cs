@@ -54,7 +54,7 @@ namespace LinqAndJavascript.CSharpDemo
         private static void SelectDemo(List<Order> orders)
         {
             var quantities = orders.Select(order => order.Quantity);
-            quantities.ToList().ForEach(quantity => System.Console.WriteLine($"Quantity: {quantity}")));
+            quantities.ToList().ForEach(quantity => System.Console.WriteLine($"Quantity: {quantity}"));
         }
 
         private static void PrintHeaderFooter(string title, Action action)

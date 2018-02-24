@@ -26,18 +26,21 @@ namespace LinqAndJavascript.CSharpDemo
 
         private static void OrderByDescendingDemo(List<Order> orders)
         {
+            // https://msdn.microsoft.com/en-us/library/system.linq.enumerable.orderbydescending(v=vs.110).aspx
             var orderedOrders = orders.OrderByDescending(order => order.Quantity);
             PrintOrders(orderedOrders);
         }
 
         private static void OrderByDemo(List<Order> orders)
         {
+            // https://msdn.microsoft.com/en-us/library/system.linq.enumerable.orderby(v=vs.110).aspx
             var orderedOrders = orders.OrderBy(order => order.Quantity);
             PrintOrders(orderedOrders);
         }
 
         private static void WhereDemo(List<Order> orders)
         {
+            // https://msdn.microsoft.com/en-us/library/system.linq.enumerable.where(v=vs.110).aspx
             var ordersWithQuantityOver30 = orders.Where(order => order.Quantity > 30);
             PrintOrders(ordersWithQuantityOver30);
         }
@@ -45,6 +48,7 @@ namespace LinqAndJavascript.CSharpDemo
         private static void AggregateDemo(List<Order> orders)
         {
             const int initialQuantity = 0;
+            // https://msdn.microsoft.com/en-us/library/system.linq.enumerable.aggregate(v=vs.110).aspx
             var totalQuantities = orders.Aggregate(initialQuantity, (sum, order) => sum + order.Quantity);
             // Same as Order simply use a convinient `Sum()` method.
             // var totalQuantities = orders.Sum(order => order.Quantity);
@@ -53,6 +57,7 @@ namespace LinqAndJavascript.CSharpDemo
 
         private static void SelectDemo(List<Order> orders)
         {
+            // https://msdn.microsoft.com/en-us/library/system.linq.enumerable.select(v=vs.110).aspx
             var quantities = orders.Select(order => order.Quantity);
             quantities.ToList().ForEach(quantity => System.Console.WriteLine($"Quantity: {quantity}"));
         }

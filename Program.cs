@@ -8,11 +8,11 @@ namespace LinqAndJavascript.CSharpDemo
     class Program
     {
         private static List<Order> Orders = new List<Order>{
-            new Order(id: 1, quantity: 10, orderDate: new DateTime(2018, 1,1,1,1,1,1)),
+            new Order(id: 1, quantity: 40, orderDate: new DateTime(2018, 1,1,1,1,1,1)),
             new Order(id: 2, quantity: 20, orderDate: new DateTime(2018, 2,2,2,2,2,2)),
             new Order(id: 3, quantity: 30, orderDate: new DateTime(2018, 3,3,3,3,3,3)),
-            new Order(id: 4, quantity: 40, orderDate: new DateTime(2018, 4,4,4,4,4,4)),
-            new Order(id: 5, quantity: 50, orderDate: new DateTime(2018, 5,5,5,5,5,5)),
+            new Order(id: 4, quantity: 10, orderDate: new DateTime(2018, 4,4,4,4,4,4)),
+            new Order(id: 5, quantity: 20, orderDate: new DateTime(2018, 5,5,5,5,5,5)),
         };
 
         static void Main(string[] args)
@@ -20,14 +20,26 @@ namespace LinqAndJavascript.CSharpDemo
             PrintHeaderFooter("Select DEMO - Print Order Quantities", () => SelectDemo(Orders));
             PrintHeaderFooter("Aggregate DEMO - Sum Quantities", () => AggregateDemo(Orders));
             PrintHeaderFooter("Where DEMO - Order with Quantity over 30", () => WhereDemo(Orders));
+            PrintHeaderFooter("OrderBy DEMO - Order by Quantities in Ascending Order", () => OrderByDemo(Orders));
+            PrintHeaderFooter("OrderByDescending DEMO - Order by Quantities in Descending Order", () => OrderByDescendingDemo(Orders));
+        }
+
+        private static void OrderByDescendingDemo(List<Order> orders)
+        {
+            var orderedOrders = orders.OrderByDescending(order => order.Quantity);
+            PrintOrders(orderedOrders);
+        }
+
+        private static void OrderByDemo(List<Order> orders)
+        {
+            var orderedOrders = orders.OrderBy(order => order.Quantity);
+            PrintOrders(orderedOrders);
         }
 
         private static void WhereDemo(List<Order> orders)
         {
             var ordersWithQuantityOver30 = orders.Where(order => order.Quantity > 30);
-            foreach (var order in ordersWithQuantityOver30) {
-                System.Console.WriteLine(order);
-            }
+            PrintOrders(ordersWithQuantityOver30);
         }
 
         private static void AggregateDemo(List<Order> orders)
@@ -53,6 +65,12 @@ namespace LinqAndJavascript.CSharpDemo
             var divider = new string('=', 20);
             System.Console.WriteLine($"{divider}  {title}  {divider}");
             action();
+        }
+
+        private static void PrintOrders(IEnumerable<Order> orders) {
+            foreach (var order in orders){
+                System.Console.WriteLine(order);;
+            }
         }
     }
 

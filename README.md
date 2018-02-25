@@ -1,4 +1,7 @@
-# How to run the source code
+# C# source code for 
+[the blog entry](https://www.slightedgecoder.com/2018/02/24/approximate-equivalent-linq-methods-javascript/)
+
+## How to run the source code
 ### NOTE: Requires [.NET Core 2](https://www.microsoft.com/net/download/windows).
 Clone the source code
 

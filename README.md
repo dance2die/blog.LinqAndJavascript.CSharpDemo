@@ -1,5 +1,5 @@
 # How to run the source code
-### NOTE: Requires .NET Core 2.
+### NOTE: Requires [.NET Core 2](https://www.microsoft.com/net/download/windows).
 Clone the source code
 
 ```bash

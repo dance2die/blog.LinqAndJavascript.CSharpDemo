@@ -28,6 +28,16 @@ namespace LinqAndJavascript.CSharpDemo
             PrintHeaderFooter("Any DEMO - Check if there are *any* orders with certain quantities", () => AnyDemo(Orders));
             PrintHeaderFooter("Distinct DEMO - Get Distinct Order Quantities", () => DistinctDemo(Orders));
             PrintHeaderFooter("Concat DEMO - Concatenate the first and the last orders", () => ConcatDemo(Orders));
+            PrintHeaderFooter("SelectMany DEMO - Concatenate the first and the last orders", () => SelectManyDemo(Orders));
+        }
+
+        private static void SelectManyDemo(List<Order> orders)
+        {
+            // WARNING ⚠️: Super contrived example again...
+            var firstOrder = orders.Take(1);
+            var lastOrder = orders.TakeLast(1);
+            var firstAndLastOrders = new [] {firstOrder, lastOrder}.SelectMany(order => order);
+            PrintOrders(firstAndLastOrders);
         }
 
         private static void ConcatDemo(List<Order> orders)

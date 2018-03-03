@@ -26,6 +26,13 @@ namespace LinqAndJavascript.CSharpDemo
 
             // Part 2 Demos start here.
             PrintHeaderFooter("Any DEMO - Check if there are *any* orders with certain quantities", () => AnyDemo(Orders));
+            PrintHeaderFooter("Distinct DEMO - Get Distinct Order Quantities", () => DistinctDemo(Orders));
+        }
+
+        private static void DistinctDemo(List<Order> orders)
+        {
+            var distinctQuantityOrders = orders.Select(order => order.Quantity).Distinct();
+            distinctQuantityOrders.ToList().ForEach(quantity => WriteLine($"Distinct Quantity: {quantity}"));
         }
 
         private static void AnyDemo(List<Order> orders)

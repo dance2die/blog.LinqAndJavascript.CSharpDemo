@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Globalization;
+using static System.Console;
 
 namespace LinqAndJavascript.CSharpDemo
 {
@@ -22,6 +23,21 @@ namespace LinqAndJavascript.CSharpDemo
             PrintHeaderFooter("Where DEMO - Order with Quantity over 30", () => WhereDemo(Orders));
             PrintHeaderFooter("OrderBy DEMO - Order by Quantities in Ascending Order", () => OrderByDemo(Orders));
             PrintHeaderFooter("OrderByDescending DEMO - Order by Quantities in Descending Order", () => OrderByDescendingDemo(Orders));
+
+            // Part 2 Demos start here.
+            PrintHeaderFooter("Any DEMO - Check if there are *any* orders with certain quantities", () => AnyDemo(Orders));
+        }
+
+        private static void AnyDemo(List<Order> orders)
+        {
+            var ordersMoreThanEqualToQuantity30Exists = orders.Any(order => order.Quantity >= 30);
+            WriteLine($"Are there orders with quantity great than and equal to 30? {ordersMoreThanEqualToQuantity30Exists}");
+
+            var ordersBeforeYear2018 = orders.Any(order => order.OrderDate.Year < 2018);
+            WriteLine($"Are there orders ordered before 2018? {ordersBeforeYear2018}");
+
+            var ordersWithIDGreaterThan100 = orders.Any(order => order.Id > 100);
+            WriteLine($"Do we have more than 100 Orders? {ordersWithIDGreaterThan100}");
         }
 
         private static void OrderByDescendingDemo(List<Order> orders)
@@ -52,26 +68,26 @@ namespace LinqAndJavascript.CSharpDemo
             var totalQuantities = orders.Aggregate(initialQuantity, (sum, order) => sum + order.Quantity);
             // Same as Order simply use a convinient `Sum()` method.
             // var totalQuantities = orders.Sum(order => order.Quantity);
-            System.Console.WriteLine($"Total Quantities: {totalQuantities}");
+            WriteLine($"Total Quantities: {totalQuantities}");
         }
 
         private static void SelectDemo(List<Order> orders)
         {
             // https://msdn.microsoft.com/en-us/library/system.linq.enumerable.select(v=vs.110).aspx
             var quantities = orders.Select(order => order.Quantity);
-            quantities.ToList().ForEach(quantity => System.Console.WriteLine($"Quantity: {quantity}"));
+            quantities.ToList().ForEach(quantity => WriteLine($"Quantity: {quantity}"));
         }
 
         private static void PrintHeaderFooter(string title, Action action)
         {
             var divider = new string('=', 20);
-            System.Console.WriteLine($"{divider}  {title}  {divider}");
+            WriteLine($"{divider}  {title}  {divider}");
             action();
         }
 
         private static void PrintOrders(IEnumerable<Order> orders) {
             foreach (var order in orders){
-                System.Console.WriteLine(order);
+                WriteLine(order);
             }
         }
     }

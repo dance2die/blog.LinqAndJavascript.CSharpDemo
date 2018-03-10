@@ -29,6 +29,30 @@ namespace LinqAndJavascript.CSharpDemo
             PrintHeaderFooter("Distinct DEMO - Get Distinct Order Quantities", () => DistinctDemo(Orders));
             PrintHeaderFooter("Concat DEMO - Concatenate the first and the last orders", () => ConcatDemo(Orders));
             PrintHeaderFooter("SelectMany DEMO - Concatenate the first and the last orders", () => SelectManyDemo(Orders));
+
+            // Part 3 Demos start here.
+            PrintHeaderFooter("Reverse DEMO - Reverse elements", () => ReverseDemo(Orders));
+        }
+
+        /// <summary>
+        /// "Reverse" is different from "OrderBy" that you don't specify which element to reverse with.
+        /// It simply reverses the current sequence in opposite order.
+        /// Therefore passing sample orders would simply reverse by order ID, as it is how it is declared.
+        /// 
+        /// In this demo, I will first reverse first & last half of the order and reverse that list.
+        /// </summary>
+        private static void ReverseDemo(List<Order> orders)
+        {
+            int mid = orders.Count / 2;
+            var leftHalf = orders.Take(mid);
+            var rightHalf = orders.Skip(mid);
+            var combinedOrders = rightHalf.Concat(leftHalf);
+
+            const int indentyBy = 4;  // indent sub result
+            PrintHeaderFooter("Reversing from this list", () => PrintOrders(combinedOrders, indentyBy), indentyBy, '*');
+
+            var reversedOrders = combinedOrders.Reverse();
+            PrintOrders(reversedOrders);
         }
 
         private static void SelectManyDemo(List<Order> orders)
@@ -105,16 +129,19 @@ namespace LinqAndJavascript.CSharpDemo
             quantities.ToList().ForEach(quantity => WriteLine($"Quantity: {quantity}"));
         }
 
-        private static void PrintHeaderFooter(string title, Action action)
+        private static void PrintHeaderFooter(
+            string title, Action action, int indentBy = 0, char dividerCharacter = '=')
         {
-            var divider = new string('=', 20);
-            WriteLine($"{divider}  {title}  {divider}");
+            var divider = new string(dividerCharacter, 20);
+            var indentation = new string(' ', indentBy);
+            WriteLine($"{indentation}{divider}  {title}  {divider}");
             action();
         }
 
-        private static void PrintOrders(IEnumerable<Order> orders) {
+        private static void PrintOrders(IEnumerable<Order> orders, int indentBy = 0) {
             foreach (var order in orders){
-                WriteLine(order);
+                var indentation = new string(' ', indentBy);
+                WriteLine($"{indentation}{order}");
             }
         }
     }

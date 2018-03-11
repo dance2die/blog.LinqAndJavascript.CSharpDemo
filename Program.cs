@@ -32,6 +32,16 @@ namespace LinqAndJavascript.CSharpDemo
 
             // Part 3 Demos start here.
             PrintHeaderFooter("Reverse DEMO - Reverse elements", () => ReverseDemo(Orders));
+            PrintHeaderFooter("Zip DEMO - Appending Order Numbers in Text", () => ZipDemo(Orders));
+        }
+
+        private static void ZipDemo(List<Order> orders)
+        {
+            var orderNumbersInText = new[] { "One", "Two", "Three", "Four", "Five" };
+            orders
+                .Zip(orderNumbersInText, (order, text) => $"Quantity of Order {text}: {order.Quantity}")
+                .ToList()
+                .ForEach(sentence => WriteLine(sentence));
         }
 
         /// <summary>
@@ -166,10 +176,10 @@ namespace LinqAndJavascript.CSharpDemo
             return $"Order ID: {Id}, Quantity: {Quantity}, Order Date: {OrderDate.ToString("dd MMM yyyy hh:mm tt p\\s\\t", CultureInfo.InvariantCulture)}";
         }
     }
-    
+
     internal class OrderEqualityCompaprer : IEqualityComparer<Order>
     {
-         public bool Equals(Order x, Order y)
+        public bool Equals(Order x, Order y)
         {
             //Check whether the compared objects reference the same data.
             if (Object.ReferenceEquals(x, y)) return true;

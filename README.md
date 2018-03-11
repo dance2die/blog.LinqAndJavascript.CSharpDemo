@@ -48,4 +48,40 @@ Order ID: 3, Quantity: 30, Order Date: 03 Mar 2018 03:03 AM pst
 Order ID: 2, Quantity: 20, Order Date: 02 Feb 2018 02:02 AM pst
 Order ID: 5, Quantity: 20, Order Date: 05 May 2018 05:05 AM pst
 Order ID: 4, Quantity: 10, Order Date: 04 Apr 2018 04:04 AM pst
+====================  Any DEMO - Check if there are *any* orders with certain quantities  ====================
+Are there orders with quantity great than and equal to 30? True
+Are there orders ordered before 2018? False
+Do we have more than 100 Orders? False
+====================  Distinct DEMO - Get Distinct Order Quantities  ====================
+Distinct Quantity: 40
+Distinct Quantity: 20
+Distinct Quantity: 30
+Distinct Quantity: 10
+====================  Concat DEMO - Concatenate the first and the last orders  ====================
+Order ID: 1, Quantity: 40, Order Date: 01 Jan 2018 01:01 AM pst
+Order ID: 5, Quantity: 20, Order Date: 05 May 2018 05:05 AM pst
+====================  SelectMany DEMO - Concatenate the first and the last orders  ====================
+Order ID: 1, Quantity: 40, Order Date: 01 Jan 2018 01:01 AM pst
+Order ID: 5, Quantity: 20, Order Date: 05 May 2018 05:05 AM pst
+====================  Reverse DEMO - Reverse elements  ====================
+    ********************  Reversing from this list  ********************
+    Order ID: 3, Quantity: 30, Order Date: 03 Mar 2018 03:03 AM pst
+    Order ID: 4, Quantity: 10, Order Date: 04 Apr 2018 04:04 AM pst
+    Order ID: 5, Quantity: 20, Order Date: 05 May 2018 05:05 AM pst
+    Order ID: 1, Quantity: 40, Order Date: 01 Jan 2018 01:01 AM pst
+    Order ID: 2, Quantity: 20, Order Date: 02 Feb 2018 02:02 AM pst
+Order ID: 2, Quantity: 20, Order Date: 02 Feb 2018 02:02 AM pst
+Order ID: 1, Quantity: 40, Order Date: 01 Jan 2018 01:01 AM pst
+Order ID: 5, Quantity: 20, Order Date: 05 May 2018 05:05 AM pst
+Order ID: 4, Quantity: 10, Order Date: 04 Apr 2018 04:04 AM pst
+Order ID: 3, Quantity: 30, Order Date: 03 Mar 2018 03:03 AM pst
+====================  Zip DEMO - Appending Order Numbers in Text  ====================
+Quantity of Order One: 40
+Quantity of Order Two: 20
+Quantity of Order Three: 30
+Quantity of Order Four: 10
+Quantity of Order Five: 20
+====================  Min/Max DEMO - Get Min and Max Order Quantities  ====================
+Minimum Quantity: 10
+Maximum Quantity: 40
 ```

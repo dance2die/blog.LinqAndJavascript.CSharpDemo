@@ -16,14 +16,6 @@ namespace LinqAndJavascript.CSharpDemo
             new Order(id: 5, quantity: 20, orderDate: new DateTime(2018, 5,5,5,5,5,5)),
         };
 
-        private static List<Order> OrdersFromDifferentStore = new List<Order>{
-            new Order(id: 2, quantity: 20, orderDate: new DateTime(2018, 2,2,2,2,2,2)),
-            new Order(id: 4, quantity: 10, orderDate: new DateTime(2018, 4,4,4,4,4,4)),
-            new Order(id: 5, quantity: 20, orderDate: new DateTime(2018, 5,5,5,5,5,5)),
-            new Order(id: 7, quantity: 70, orderDate: new DateTime(2018, 7,7,7,7,7,7)),
-            new Order(id: 8, quantity: 30, orderDate: new DateTime(2018, 8,8,8,8,8,8)),
-        };
-
         static void Main(string[] args)
         {
             PrintHeaderFooter("Select DEMO - Print Order Quantities", () => SelectDemo(Orders));
@@ -40,16 +32,6 @@ namespace LinqAndJavascript.CSharpDemo
 
             // Part 3 Demos start here.
             PrintHeaderFooter("Reverse DEMO - Reverse elements", () => ReverseDemo(Orders));
-            PrintHeaderFooter("Union DEMO - Get List of distinct orders from stores", () => UnionDemo(Orders, OrdersFromDifferentStore));
-        }
-
-        /// <summary>
-        /// Shows combined union of orders
-        /// </summary>
-        private static void UnionDemo(List<Order> orders, List<Order> ordersFromDifferentStore)
-        {
-            var unionedOrders = orders.Union(ordersFromDifferentStore, new OrderEqualityCompaprer());
-            PrintOrders(unionedOrders);
         }
 
         /// <summary>

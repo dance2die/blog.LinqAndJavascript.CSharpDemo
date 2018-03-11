@@ -33,6 +33,15 @@ namespace LinqAndJavascript.CSharpDemo
             // Part 3 Demos start here.
             PrintHeaderFooter("Reverse DEMO - Reverse elements", () => ReverseDemo(Orders));
             PrintHeaderFooter("Zip DEMO - Appending Order Numbers in Text", () => ZipDemo(Orders));
+            PrintHeaderFooter("Min/Max DEMO - Get Min and Max Order Quantities", () => MinMaxDemo(Orders));
+        }
+
+        private static void MinMaxDemo(List<Order> orders)
+        {
+            var minimumQuantity = orders.Min(order => order.Quantity);
+            var maximumQuantity = orders.Max(order => order.Quantity);
+            WriteLine($"Minimum Quantity: {minimumQuantity}");
+            WriteLine($"Maximum Quantity: {maximumQuantity}");
         }
 
         private static void ZipDemo(List<Order> orders)

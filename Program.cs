@@ -8,6 +8,7 @@ namespace LinqAndJavascript.CSharpDemo
 {
     class Program
     {
+        // Represents "All" orders
         private static List<Order> Orders = new List<Order>{
             new Order(id: 1, quantity: 40, orderDate: new DateTime(2018, 1,1,1,1,1,1)),
             new Order(id: 2, quantity: 20, orderDate: new DateTime(2018, 2,2,2,2,2,2)),
@@ -34,6 +35,20 @@ namespace LinqAndJavascript.CSharpDemo
             PrintHeaderFooter("Reverse DEMO - Reverse elements", () => ReverseDemo(Orders));
             PrintHeaderFooter("Zip DEMO - Appending Order Numbers in Text", () => ZipDemo(Orders));
             PrintHeaderFooter("Min/Max DEMO - Get Min and Max Order Quantities", () => MinMaxDemo(Orders));
+
+            // Part 4 Demos start here.
+            PrintHeaderFooter("Union DEMO - Display All Orders", () => UnionDemo(Orders));
+            // PrintHeaderFooter("Intersect (intersection) DEMO - Appending Order Numbers in Text", () => IntersectDemo(Orders));
+            // PrintHeaderFooter("Except (subtraction) DEMO - Get Min and Max Order Quantities", () => ExceptDemo(Orders));
+        }
+
+        private static void UnionDemo(List<Order> orders)
+        {
+            var usOrders = orders.Take(2);
+            var internationalOrders = orders.Skip(2);
+            var allOrders = usOrders.Union(internationalOrders);
+            
+            PrintOrders(allOrders);
         }
 
         private static void MinMaxDemo(List<Order> orders)

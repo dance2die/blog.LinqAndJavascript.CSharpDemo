@@ -53,7 +53,7 @@ namespace LinqAndJavascript.CSharpDemo
 
             // Part 4 Demos start here.
             PrintHeaderFooter("Union DEMO - Display Domestic & International Orders", () => UnionDemo(DomesticOrders, InternationalOrders));
-            PrintHeaderFooter("Intersect (intersection) DEMO - Appending Order Numbers in Text", () => IntersectDemo(Orders, DomesticOrders, InternationalOrders));
+            PrintHeaderFooter("Intersect (intersection) DEMO - Find All Orders on Hold", () => IntersectDemo(Orders, DomesticOrders, InternationalOrders));
             // PrintHeaderFooter("Except (subtraction) DEMO - Get Min and Max Order Quantities", () => ExceptDemo(Orders));
         }
 

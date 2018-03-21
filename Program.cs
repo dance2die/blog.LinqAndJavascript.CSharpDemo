@@ -53,8 +53,16 @@ namespace LinqAndJavascript.CSharpDemo
 
             // Part 4 Demos start here.
             PrintHeaderFooter("Union DEMO - Display Domestic & International Orders", () => UnionDemo(DomesticOrders, InternationalOrders));
-            PrintHeaderFooter("Intersect (intersection) DEMO - Find All Orders on Hold", () => IntersectDemo(Orders, DomesticOrders, InternationalOrders));
-            // PrintHeaderFooter("Except (subtraction) DEMO - Get Min and Max Order Quantities", () => ExceptDemo(Orders));
+            var ordersOnHold = Orders;
+            PrintHeaderFooter("Intersect (intersection) DEMO - Find All Orders on Hold", () => IntersectDemo(ordersOnHold, DomesticOrders, InternationalOrders));
+            PrintHeaderFooter("Except (subtraction) DEMO - Get all orders NOT on hold", () => ExceptDemo(ordersOnHold, DomesticOrders, InternationalOrders));
+        }
+
+        private static void ExceptDemo(List<Order> ordersOnHold, List<Order> domesticOrders, List<Order> internationalOrders)
+        {
+            var allOrders = domesticOrders.Union(internationalOrders);
+            var allOrdersNotOnHold = allOrders.Except(ordersOnHold, new OrderEqualityCompaprer());
+            PrintOrders(allOrdersNotOnHold);
         }
 
         private static void IntersectDemo(List<Order> ordersOnHold, List<Order> domesticOrders, List<Order> internationalOrders)

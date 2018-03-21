@@ -53,8 +53,20 @@ namespace LinqAndJavascript.CSharpDemo
 
             // Part 4 Demos start here.
             PrintHeaderFooter("Union DEMO - Display Domestic & International Orders", () => UnionDemo(DomesticOrders, InternationalOrders));
-            // PrintHeaderFooter("Intersect (intersection) DEMO - Appending Order Numbers in Text", () => IntersectDemo(Orders));
+            PrintHeaderFooter("Intersect (intersection) DEMO - Appending Order Numbers in Text", () => IntersectDemo(Orders, DomesticOrders, InternationalOrders));
             // PrintHeaderFooter("Except (subtraction) DEMO - Get Min and Max Order Quantities", () => ExceptDemo(Orders));
+        }
+
+        private static void IntersectDemo(List<Order> ordersOnHold, List<Order> domesticOrders, List<Order> internationalOrders)
+        {
+            var orderComparer = new OrderEqualityCompaprer();
+            var usOrdersOnHold = ordersOnHold.Intersect(domesticOrders, orderComparer);
+            var internationalOrdersOnHold = ordersOnHold.Intersect(internationalOrders, orderComparer);
+
+            const int indentBy = 4;
+            const char dividerCharacter = '*';
+            PrintHeaderFooter("US Orders on hold", () => PrintOrders(usOrdersOnHold, indentBy), indentBy, dividerCharacter);
+            PrintHeaderFooter("International Orders on hold", () => PrintOrders(internationalOrdersOnHold, indentBy), indentBy, dividerCharacter);
         }
 
         private static void UnionDemo(List<Order> domesticOrders, List<Order> internationalOrders)

@@ -8,13 +8,28 @@ namespace LinqAndJavascript.CSharpDemo
 {
     class Program
     {
-        // Represents "All" orders
         private static List<Order> Orders = new List<Order>{
             new Order(id: 1, quantity: 40, orderDate: new DateTime(2018, 1,1,1,1,1,1)),
             new Order(id: 2, quantity: 20, orderDate: new DateTime(2018, 2,2,2,2,2,2)),
             new Order(id: 3, quantity: 30, orderDate: new DateTime(2018, 3,3,3,3,3,3)),
             new Order(id: 4, quantity: 10, orderDate: new DateTime(2018, 4,4,4,4,4,4)),
             new Order(id: 5, quantity: 20, orderDate: new DateTime(2018, 5,5,5,5,5,5)),
+        };
+
+        private static List<Order> DomesticOrders = new List<Order>{
+            new Order(id: 1, quantity: 40, orderDate: new DateTime(2018, 1,1,1,1,1,1)),
+            new Order(id: 11, quantity: 20, orderDate: new DateTime(2018, 11,2,2,2,2,2)),
+            new Order(id: 111, quantity: 450, orderDate: new DateTime(2018, 11,1,2,2,2,2)),
+            new Order(id: 1111, quantity: 230, orderDate: new DateTime(2018, 11,11,2,2,2,2)),
+        };
+
+        private static List<Order> InternationalOrders = new List<Order>{
+            new Order(id: 3, quantity: 30, orderDate: new DateTime(2018, 3,3,3,3,3,3)),
+            new Order(id: 33, quantity: 300, orderDate: new DateTime(2018, 3,3,3,3,33,3)),
+            new Order(id: 4, quantity: 10, orderDate: new DateTime(2018, 4,4,4,4,4,4)),
+            new Order(id: 44, quantity: 100, orderDate: new DateTime(2018, 4,4,4,4,44,4)),
+            new Order(id: 5, quantity: 20, orderDate: new DateTime(2018, 5,5,5,5,5,5)),
+            new Order(id: 55, quantity: 200, orderDate: new DateTime(2018, 5,5,5,5,55,5)),
         };
 
         static void Main(string[] args)
@@ -37,17 +52,14 @@ namespace LinqAndJavascript.CSharpDemo
             PrintHeaderFooter("Min/Max DEMO - Get Min and Max Order Quantities", () => MinMaxDemo(Orders));
 
             // Part 4 Demos start here.
-            PrintHeaderFooter("Union DEMO - Display All Orders", () => UnionDemo(Orders));
+            PrintHeaderFooter("Union DEMO - Display Domestic & International Orders", () => UnionDemo(DomesticOrders, InternationalOrders));
             // PrintHeaderFooter("Intersect (intersection) DEMO - Appending Order Numbers in Text", () => IntersectDemo(Orders));
             // PrintHeaderFooter("Except (subtraction) DEMO - Get Min and Max Order Quantities", () => ExceptDemo(Orders));
         }
 
-        private static void UnionDemo(List<Order> orders)
+        private static void UnionDemo(List<Order> domesticOrders, List<Order> internationalOrders)
         {
-            var usOrders = orders.Take(2);
-            var internationalOrders = orders.Skip(2);
-            var allOrders = usOrders.Union(internationalOrders);
-            
+            var allOrders = domesticOrders.Union(internationalOrders);
             PrintOrders(allOrders);
         }
 

@@ -58,10 +58,18 @@ namespace LinqAndJavascript.CSharpDemo
             PrintHeaderFooter("Except (subtraction) DEMO - Get all orders NOT on hold", () => ExceptDemo(ordersOnHold, DomesticOrders, InternationalOrders));
 
             // Part 5 Demos start here.
-            PrintHeaderFooter("Sum DEMO - Sum all quantities", () => SumDemo(Orders));
-            // Average
-            PrintHeaderFooter("Avarage DEMO - Average quantities", () => AverageDemo(Orders));
-            // Count
+            PrintHeaderFooter("Sum DEMO - Sum All Quantities", () => SumDemo(Orders));
+            PrintHeaderFooter("Avarage DEMO - Average Quantities", () => AverageDemo(Orders));
+            PrintHeaderFooter("Count DEMO - Count Orders Placed On and After March", () => CountDemo(Orders));
+        }
+
+        private static void CountDemo(List<Order> orders)
+        {
+            var march = new DateTime(2018, 3, 1);
+            var ordersOnAndAfterMarch = orders.Where(order => order.OrderDate >= march);
+            PrintOrders(ordersOnAndAfterMarch, indentBy: 4);
+            var orderCountPlacedOnAndAfterMarch = orders.Count(order => order.OrderDate >= march);
+            WriteLine($"Total Orders Placed On and After March: {orderCountPlacedOnAndAfterMarch}");
         }
 
         private static void AverageDemo(List<Order> orders)

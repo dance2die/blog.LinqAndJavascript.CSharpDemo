@@ -111,4 +111,13 @@ Order ID: 1111, Quantity: 230, Order Date: 11 Nov 2018 02:02 AM pst
 Order ID: 33, Quantity: 300, Order Date: 03 Mar 2018 03:03 AM pst
 Order ID: 44, Quantity: 100, Order Date: 04 Apr 2018 04:04 AM pst
 Order ID: 55, Quantity: 200, Order Date: 05 May 2018 05:05 AM pst
+====================  Sum DEMO - Sum All Quantities  ====================
+SumDemo - Total Quantities: 120
+====================  Avarage DEMO - Average Quantity  ====================
+Average Quantity: 120 / 5 = 24
+====================  Count DEMO - Count Orders Placed On and After March  ====================
+    Order ID: 3, Quantity: 30, Order Date: 03 Mar 2018 03:03 AM pst
+    Order ID: 4, Quantity: 10, Order Date: 04 Apr 2018 04:04 AM pst
+    Order ID: 5, Quantity: 20, Order Date: 05 May 2018 05:05 AM pst
+Total Orders Placed On and After March: 3
 ```

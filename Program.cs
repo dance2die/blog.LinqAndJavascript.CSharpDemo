@@ -59,7 +59,7 @@ namespace LinqAndJavascript.CSharpDemo
 
             // Part 5 Demos start here.
             PrintHeaderFooter("Sum DEMO - Sum All Quantities", () => SumDemo(Orders));
-            PrintHeaderFooter("Avarage DEMO - Average Quantities", () => AverageDemo(Orders));
+            PrintHeaderFooter("Avarage DEMO - Average Quantity", () => AverageDemo(Orders));
             PrintHeaderFooter("Count DEMO - Count Orders Placed On and After March", () => CountDemo(Orders));
         }
 

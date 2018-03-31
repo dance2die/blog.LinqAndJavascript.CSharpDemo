@@ -77,7 +77,7 @@ namespace LinqAndJavascript.CSharpDemo
             var averageQuantity = orders.Average(order => order.Quantity);
             var totalQuantities = orders.Sum(order => order.Quantity);
             var count = orders.Count();
-            WriteLine($"Average Quantities: {totalQuantities} / {count} = {averageQuantity}");
+            WriteLine($"Average Quantity: {totalQuantities} / {count} = {averageQuantity}");
         }
 
         private static void SumDemo(List<Order> orders)

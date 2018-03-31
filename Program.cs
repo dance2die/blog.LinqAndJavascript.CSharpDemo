@@ -56,6 +56,26 @@ namespace LinqAndJavascript.CSharpDemo
             var ordersOnHold = Orders;
             PrintHeaderFooter("Intersect (intersection) DEMO - Find All Orders on Hold", () => IntersectDemo(ordersOnHold, DomesticOrders, InternationalOrders));
             PrintHeaderFooter("Except (subtraction) DEMO - Get all orders NOT on hold", () => ExceptDemo(ordersOnHold, DomesticOrders, InternationalOrders));
+
+            // Part 5 Demos start here.
+            PrintHeaderFooter("Sum DEMO - Sum all quantities", () => SumDemo(Orders));
+            // Average
+            PrintHeaderFooter("Avarage DEMO - Average quantities", () => AverageDemo(Orders));
+            // Count
+        }
+
+        private static void AverageDemo(List<Order> orders)
+        {
+            var averageQuantity = orders.Average(order => order.Quantity);
+            var totalQuantities = orders.Sum(order => order.Quantity);
+            var count = orders.Count();
+            WriteLine($"Average Quantities: {totalQuantities} / {count} = {averageQuantity}");
+        }
+
+        private static void SumDemo(List<Order> orders)
+        {
+            var totalQuantities = orders.Sum(order => order.Quantity);
+            WriteLine($"SumDemo - Total Quantities: {totalQuantities}");
         }
 
         private static void ExceptDemo(List<Order> ordersOnHold, List<Order> domesticOrders, List<Order> internationalOrders)

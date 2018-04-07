@@ -12,7 +12,7 @@ namespace LinqAndJavascript.CSharpDemo
         private static DateTime march = new DateTime(2018, 3, 1);
         private static DateTime september = new DateTime(2018, 9, 1);
 
-
+        private static Order NullOrder = new Order(-1, 0, DateTime.MinValue);
         private static List<Order> Orders = new List<Order>{
             new Order(id: 1, quantity: 40, orderDate: new DateTime(2018, 1,1,1,1,1,1)),
             new Order(id: 2, quantity: 20, orderDate: new DateTime(2018, 2,2,2,2,2,2)),
@@ -70,6 +70,13 @@ namespace LinqAndJavascript.CSharpDemo
             // Part 6 Demos start here.
             PrintHeaderFooter("First/FirstOrDefault DEMO - Get First Order", () => FirsDemo(Orders));
             PrintHeaderFooter("Last/LastOrDefault DEMO - Get Last Order", () => LastDemo(Orders));
+            PrintHeaderFooter("DefaultIfEmpty DEMO - Get Order or Default if Empty", () => DefaultIfEmptyDemo(Orders));
+        }
+
+        private static void DefaultIfEmptyDemo(List<Order> orders)
+        {
+            var ordersAfterSeptember = orders.Where(order => order.OrderDate >= september).DefaultIfEmpty(NullOrder);
+            PrintOrders(ordersAfterSeptember);
         }
 
         private static void LastDemo(List<Order> orders)
@@ -258,7 +265,7 @@ namespace LinqAndJavascript.CSharpDemo
 
         private static void PrintOrders(IEnumerable<Order> orders, int indentBy = 0)
         {
-            Orders.ForEach(order => PrintOrder(order, indentBy));
+            orders.ToList().ForEach(order => PrintOrder(order, indentBy));
         }
 
         private static void PrintOrder(Order order, int indentBy = 0)

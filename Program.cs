@@ -8,6 +8,11 @@ namespace LinqAndJavascript.CSharpDemo
 {
     class Program
     {
+        private const int indentBy = 4;
+        private static DateTime march = new DateTime(2018, 3, 1);
+        private static DateTime september = new DateTime(2018, 9, 1);
+
+
         private static List<Order> Orders = new List<Order>{
             new Order(id: 1, quantity: 40, orderDate: new DateTime(2018, 1,1,1,1,1,1)),
             new Order(id: 2, quantity: 20, orderDate: new DateTime(2018, 2,2,2,2,2,2)),
@@ -64,11 +69,17 @@ namespace LinqAndJavascript.CSharpDemo
 
             // Part 6 Demos start here.
             PrintHeaderFooter("First/FirstOrDefault DEMO - Get First Order", () => FirsDemo(Orders));
+            PrintHeaderFooter("Last/LastOrDefault DEMO - Get Last Order", () => LastDemo(Orders));
         }
 
-        private const int indentBy = 4;
-        private static DateTime march = new DateTime(2018, 3, 1);
-        private static DateTime september = new DateTime(2018, 9, 1);
+        private static void LastDemo(List<Order> orders)
+        {
+            var lastOrderAfterMarch = orders.Last(order => order.OrderDate >= march);
+            PrintHeaderFooter("Last order after March", () => PrintOrder(lastOrderAfterMarch, indentBy), indentBy);
+
+            var LastOrderAfterSeptember = orders.LastOrDefault(order => order.OrderDate >= september);
+            PrintHeaderFooter("Last or Default order after September", () => PrintOrder(LastOrderAfterSeptember, indentBy), indentBy);
+        }
 
         private static void FirsDemo(List<Order> orders)
         {

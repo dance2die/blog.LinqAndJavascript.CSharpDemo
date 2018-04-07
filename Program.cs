@@ -71,6 +71,17 @@ namespace LinqAndJavascript.CSharpDemo
             PrintHeaderFooter("First/FirstOrDefault DEMO - Get First Order", () => FirsDemo(Orders));
             PrintHeaderFooter("Last/LastOrDefault DEMO - Get Last Order", () => LastDemo(Orders));
             PrintHeaderFooter("DefaultIfEmpty DEMO - Get Order or Default if Empty", () => DefaultIfEmptyDemo(Orders));
+            PrintHeaderFooter("Skip/SkipWhile DEMO - Skip Orders", () => SkipDemo(Orders));
+            // PrintHeaderFooter("Take/TakeWhile DEMO - Skip Orders", () => SkipDemo(Orders));
+        }
+
+        private static void SkipDemo(List<Order> orders)
+        {
+            var lastTwoOrders1 = orders.Skip(orders.Count - 2);
+            PrintHeaderFooter("Last Two Orders - Skip", () => PrintOrders(lastTwoOrders1, indentBy), indentBy);
+
+            var lastTwoOrders2 = orders.SkipWhile((order, index) => index < orders.Count - 2);
+            PrintHeaderFooter("Last Two Orders - SkipWhile", () => PrintOrders(lastTwoOrders2, indentBy), indentBy);
         }
 
         private static void DefaultIfEmptyDemo(List<Order> orders)

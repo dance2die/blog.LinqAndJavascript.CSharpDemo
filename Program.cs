@@ -61,13 +61,28 @@ namespace LinqAndJavascript.CSharpDemo
             PrintHeaderFooter("Sum DEMO - Sum All Quantities", () => SumDemo(Orders));
             PrintHeaderFooter("Avarage DEMO - Average Quantity", () => AverageDemo(Orders));
             PrintHeaderFooter("Count DEMO - Count Orders Placed On and After March", () => CountDemo(Orders));
+
+            // Part 6 Demos start here.
+            PrintHeaderFooter("First/FirstOrDefault DEMO - Get First Order", () => FirsDemo(Orders));
+        }
+
+        private const int indentBy = 4;
+        private static DateTime march = new DateTime(2018, 3, 1);
+        private static DateTime september = new DateTime(2018, 9, 1);
+
+        private static void FirsDemo(List<Order> orders)
+        {
+            var firstOrderAfterMarch = orders.First(order => order.OrderDate >= march);
+            PrintHeaderFooter("First order after March", () => PrintOrder(firstOrderAfterMarch, indentBy), indentBy);
+
+            var firstOrderAfterSeptember = orders.FirstOrDefault(order => order.OrderDate >= september);
+            PrintHeaderFooter("First or Default order after September", () => PrintOrder(firstOrderAfterSeptember, indentBy), indentBy);
         }
 
         private static void CountDemo(List<Order> orders)
         {
-            var march = new DateTime(2018, 3, 1);
             var ordersOnAndAfterMarch = orders.Where(order => order.OrderDate >= march);
-            PrintOrders(ordersOnAndAfterMarch, indentBy: 4);
+            PrintOrders(ordersOnAndAfterMarch, indentBy: indentBy);
             var orderCountPlacedOnAndAfterMarch = orders.Count(order => order.OrderDate >= march);
             WriteLine($"Total Orders Placed On and After March: {orderCountPlacedOnAndAfterMarch}");
         }
@@ -99,7 +114,6 @@ namespace LinqAndJavascript.CSharpDemo
             var usOrdersOnHold = ordersOnHold.Intersect(domesticOrders, orderComparer);
             var internationalOrdersOnHold = ordersOnHold.Intersect(internationalOrders, orderComparer);
 
-            const int indentBy = 4;
             const char dividerCharacter = '*';
             PrintHeaderFooter("US Orders on hold", () => PrintOrders(usOrdersOnHold, indentBy), indentBy, dividerCharacter);
             PrintHeaderFooter("International Orders on hold", () => PrintOrders(internationalOrdersOnHold, indentBy), indentBy, dividerCharacter);
@@ -142,8 +156,7 @@ namespace LinqAndJavascript.CSharpDemo
             var rightHalf = orders.Skip(mid);
             var combinedOrders = rightHalf.Concat(leftHalf);
 
-            const int indentyBy = 4;  // indent sub result
-            PrintHeaderFooter("Reversing from this list", () => PrintOrders(combinedOrders, indentyBy), indentyBy, '*');
+            PrintHeaderFooter("Reversing from this list", () => PrintOrders(combinedOrders, indentBy), indentBy, '*');
 
             var reversedOrders = combinedOrders.Reverse();
             PrintOrders(reversedOrders);
@@ -234,11 +247,13 @@ namespace LinqAndJavascript.CSharpDemo
 
         private static void PrintOrders(IEnumerable<Order> orders, int indentBy = 0)
         {
-            foreach (var order in orders)
-            {
-                var indentation = new string(' ', indentBy);
-                WriteLine($"{indentation}{order}");
-            }
+            Orders.ForEach(order => PrintOrder(order, indentBy));
+        }
+
+        private static void PrintOrder(Order order, int indentBy = 0)
+        {
+            var indentation = new string(' ', indentBy);
+            WriteLine($"{indentation}{order ?? (object)"<NULL>"}");
         }
     }
 

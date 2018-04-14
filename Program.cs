@@ -72,7 +72,7 @@ namespace LinqAndJavascript.CSharpDemo
             PrintHeaderFooter("Last/LastOrDefault DEMO - Get Last Order", () => LastDemo(Orders));
             PrintHeaderFooter("DefaultIfEmpty DEMO - Get Order or Default if Empty", () => DefaultIfEmptyDemo(Orders));
             PrintHeaderFooter("Skip/SkipWhile DEMO - Skip Orders", () => SkipDemo(Orders));
-            PrintHeaderFooter("Take/TakeWhile DEMO - Skip Orders", () => TakeDemo(Orders));
+            PrintHeaderFooter("Take/TakeWhile DEMO - Take Orders", () => TakeDemo(Orders));
         }
 
         private static void TakeDemo(List<Order> orders)

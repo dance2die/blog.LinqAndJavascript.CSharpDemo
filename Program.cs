@@ -77,7 +77,15 @@ namespace LinqAndJavascript.CSharpDemo
             // Part 7 Demos start here.
             PrintHeaderFooter("Empty DEMO - Get an Empty Order Sequence", () => EmptyDemo());
             PrintHeaderFooter("Repeat DEMO - Repeat Texts", () => RepeatDemo());
-            // PrintHeaderFooter("Range DEMO - Creating New Orders", () => RangeDemo());
+            PrintHeaderFooter("Range DEMO - Some Generic Examples", () => RangeDemo());
+        }
+
+        private static void RangeDemo()
+        {
+            var oneToTen = Enumerable.Range(1, 10);
+            WriteLine($"One to Ten => {string.Join(",", oneToTen)}");
+            var randomRange = Enumerable.Range(999, 3);
+            WriteLine($"Three numbers from 999 => {string.Join(",", randomRange)}");
         }
 
         private static void RepeatDemo()

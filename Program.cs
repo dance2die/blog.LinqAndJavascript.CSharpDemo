@@ -76,6 +76,13 @@ namespace LinqAndJavascript.CSharpDemo
 
             // Part 7 Demos start here.
             PrintHeaderFooter("Empty DEMO - Get an Order Sequence", () => EmptyDemo());
+            PrintHeaderFooter("Repeat DEMO - Faces Galore", () => RepeatDemo());
+        }
+
+        private static void RepeatDemo()
+        {
+            var headerDivider = string.Join("\t", Enumerable.Repeat(":)", 5));
+            WriteLine($"\tI love your smiles {headerDivider}");
         }
 
         private static void EmptyDemo()

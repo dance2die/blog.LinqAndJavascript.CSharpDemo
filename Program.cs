@@ -76,13 +76,15 @@ namespace LinqAndJavascript.CSharpDemo
 
             // Part 7 Demos start here.
             PrintHeaderFooter("Empty DEMO - Get an Order Sequence", () => EmptyDemo());
-            PrintHeaderFooter("Repeat DEMO - Faces Galore", () => RepeatDemo());
+            PrintHeaderFooter("Repeat DEMO - Repeat Last Order 3 times", () => RepeatDemo(Orders));
+            // PrintHeaderFooter("Range DEMO - Faces Galore", () => RangeDemo());
         }
 
-        private static void RepeatDemo()
+        private static void RepeatDemo(List<Order> orders)
         {
-            var headerDivider = string.Join("\t", Enumerable.Repeat(":)", 5));
-            WriteLine($"\tI love your smiles {headerDivider}");
+            var lastOrder = orders.Last();
+            var repeatedOrders = Enumerable.Repeat(lastOrder, 3);
+            PrintOrders(repeatedOrders);
         }
 
         private static void EmptyDemo()

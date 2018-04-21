@@ -68,11 +68,20 @@ namespace LinqAndJavascript.CSharpDemo
             PrintHeaderFooter("Count DEMO - Count Orders Placed On and After March", () => CountDemo(Orders));
 
             // Part 6 Demos start here.
-            PrintHeaderFooter("First/FirstOrDefault DEMO - Get First Order", () => FirsDemo(Orders));
+            PrintHeaderFooter("First/FirstOrDefault DEMO - Get First Order", () => FirstDemo(Orders));
             PrintHeaderFooter("Last/LastOrDefault DEMO - Get Last Order", () => LastDemo(Orders));
             PrintHeaderFooter("DefaultIfEmpty DEMO - Get Order or Default if Empty", () => DefaultIfEmptyDemo(Orders));
             PrintHeaderFooter("Skip/SkipWhile DEMO - Skip Orders", () => SkipDemo(Orders));
             PrintHeaderFooter("Take/TakeWhile DEMO - Take Orders", () => TakeDemo(Orders));
+
+            // Part 7 Demos start here.
+            PrintHeaderFooter("Empty DEMO - Get an Order Sequence", () => EmptyDemo());
+        }
+
+        private static void EmptyDemo()
+        {
+            var emptyOrders = Enumerable.Empty<Order>();
+            PrintHeaderFooter("This prints no order since the sequence is empty", () => PrintOrders(emptyOrders), indentBy);
         }
 
         private static void TakeDemo(List<Order> orders)
@@ -108,7 +117,7 @@ namespace LinqAndJavascript.CSharpDemo
             PrintHeaderFooter("Last or Default order after September", () => PrintOrder(LastOrderAfterSeptember, indentBy), indentBy);
         }
 
-        private static void FirsDemo(List<Order> orders)
+        private static void FirstDemo(List<Order> orders)
         {
             var firstOrderAfterMarch = orders.First(order => order.OrderDate >= march);
             PrintHeaderFooter("First order after March", () => PrintOrder(firstOrderAfterMarch, indentBy), indentBy);

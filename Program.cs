@@ -78,6 +78,32 @@ namespace LinqAndJavascript.CSharpDemo
             PrintHeaderFooter("Empty DEMO - Get an Empty Order Sequence", () => EmptyDemo());
             PrintHeaderFooter("Repeat DEMO - Repeat Texts", () => RepeatDemo());
             PrintHeaderFooter("Range DEMO - Some Generic Examples", () => RangeDemo());
+
+            // Part 8 Demos start here.
+            PrintHeaderFooter("All DEMO - Check If All Orders Match a Condition", () => AllDemo(Orders));
+            PrintHeaderFooter("Contains DEMO - Do Shipped Orders Contain a Domestic Order?", () => ContainsDemo(Orders, DomesticOrders));
+            PrintHeaderFooter("SequenceEqual DEMO - Check If Two Sequences Are The Same", () => SequenceEqualDemo(Orders, DomesticOrders));
+        }
+
+        private static void SequenceEqualDemo(List<Order> shippedOrders, List<Order> domesticOrders)
+        {
+            var sameOrderAreSame = shippedOrders.SequenceEqual(shippedOrders);
+            WriteLine($"Same Orders share the same sequence {sameOrderAreSame}");
+            var areAllDomesticOrdersShipped = shippedOrders.SequenceEqual(domesticOrders);
+            WriteLine($"Are All Domestic Order Shipped? {areAllDomesticOrdersShipped}");
+        }
+
+        private static void ContainsDemo(List<Order> shippedOrders, List<Order> domesticOrders)
+        {
+            var firstDomesticOrder = domesticOrders.First();
+            var containsDomesticOrder = shippedOrders.Contains(firstDomesticOrder, new OrderEqualityCompaprer());
+            WriteLine($"Is the first domestic order shipped? {containsDomesticOrder}");
+        }
+
+        private static void AllDemo(List<Order> orders)
+        {
+            var areAllOrdersPlacedOn2018 = orders.All(order => order.OrderDate.Year == 2018);
+            WriteLine($"Are All Orders Placed On 2018?: {areAllOrdersPlacedOn2018}");
         }
 
         private static void RangeDemo()

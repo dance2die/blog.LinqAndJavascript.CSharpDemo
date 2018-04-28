@@ -81,7 +81,15 @@ namespace LinqAndJavascript.CSharpDemo
 
             // Part 8 Demos start here.
             PrintHeaderFooter("All DEMO - Check If All Orders Match a Condition", () => AllDemo(Orders));
+            PrintHeaderFooter("Contains DEMO - Do Shipped Orders Contain a Domestic Order?", () => ContainsDemo(Orders, DomesticOrders));
 
+        }
+
+        private static void ContainsDemo(List<Order> shippedOrders, List<Order> domesticOrders)
+        {
+            var firstDomesticOrder = domesticOrders.First();
+            var containsDomesticOrder = shippedOrders.Contains(firstDomesticOrder, new OrderEqualityCompaprer());
+            WriteLine($"Is the first domestic order shipped? {containsDomesticOrder}");
         }
 
         private static void AllDemo(List<Order> orders)

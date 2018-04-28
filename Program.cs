@@ -82,7 +82,15 @@ namespace LinqAndJavascript.CSharpDemo
             // Part 8 Demos start here.
             PrintHeaderFooter("All DEMO - Check If All Orders Match a Condition", () => AllDemo(Orders));
             PrintHeaderFooter("Contains DEMO - Do Shipped Orders Contain a Domestic Order?", () => ContainsDemo(Orders, DomesticOrders));
+            PrintHeaderFooter("SequenceEqual DEMO - Check If Two Sequences Are The Same", () => SequenceEqualDemo(Orders, DomesticOrders));
+        }
 
+        private static void SequenceEqualDemo(List<Order> shippedOrders, List<Order> domesticOrders)
+        {
+            var sameOrderAreSame = shippedOrders.SequenceEqual(shippedOrders);
+            WriteLine($"Same Orders share the same sequence {sameOrderAreSame}");
+            var areAllDomesticOrdersShipped = shippedOrders.SequenceEqual(domesticOrders);
+            WriteLine($"Are All Domestic Order Shipped? {areAllDomesticOrdersShipped}");
         }
 
         private static void ContainsDemo(List<Order> shippedOrders, List<Order> domesticOrders)

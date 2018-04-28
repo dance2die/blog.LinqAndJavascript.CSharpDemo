@@ -78,6 +78,16 @@ namespace LinqAndJavascript.CSharpDemo
             PrintHeaderFooter("Empty DEMO - Get an Empty Order Sequence", () => EmptyDemo());
             PrintHeaderFooter("Repeat DEMO - Repeat Texts", () => RepeatDemo());
             PrintHeaderFooter("Range DEMO - Some Generic Examples", () => RangeDemo());
+
+            // Part 8 Demos start here.
+            PrintHeaderFooter("All DEMO - Check If All Orders Match a Condition", () => AllDemo(Orders));
+
+        }
+
+        private static void AllDemo(List<Order> orders)
+        {
+            var areAllOrdersPlacedOn2018 = orders.All(order => order.OrderDate.Year == 2018);
+            WriteLine($"Are All Orders Placed On 2018?: {areAllOrdersPlacedOn2018}");
         }
 
         private static void RangeDemo()
